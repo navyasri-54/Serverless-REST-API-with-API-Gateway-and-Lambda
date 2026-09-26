@@ -35,7 +35,7 @@ Click **Create a function** to create a Lambda function
 Select **Author from scratch** and give the function a name
 ![3](https://user-images.githubusercontent.com/102405945/212030781-6186a480-387d-44d2-8d44-8fa04f6a9328.png)
 
-Select Runtime as **Python 3.9** and **x86_64** Architecture. Select **Create a new role with basic Lambda permissions** as Excution role
+Select Runtime as **Python 3.12** and **x86_64** Architecture. Select **Create a new role with basic Lambda permissions** as Excution role
 ![4](https://user-images.githubusercontent.com/102405945/212030934-5a646cd9-970a-4891-85ba-3ac1382d19d5.png)
 
 Click **Create function**
@@ -75,12 +75,9 @@ Create a layer by configuring name, description.
 ![20](https://user-images.githubusercontent.com/102405945/212031267-21ad35b0-7c8c-4c00-a36d-35754f054358.png)
 
 Enter the following commands to create a .zip file using terminal: <br>
-**mkdir pypackages** <br>
-**cd .\pypackages** <br>
-**pwd** <br>
-Copy the path <br>
-**pip3 install requests -t <path>** <br>
-**ls** <br>
+mkdir -p python
+pip3 install requests -t python/
+zip -r layer.zip python/
 ![21](https://user-images.githubusercontent.com/102405945/212031296-07616afd-d489-4038-a1de-b16bf6ea299c.png)
 ![22](https://user-images.githubusercontent.com/102405945/212031307-cd8ab94e-88c1-4564-a9d6-f32d11b837ec.png)
 ![23](https://user-images.githubusercontent.com/102405945/212031315-1a366a74-15b6-461e-9cd7-933db8826e10.png)
@@ -135,8 +132,8 @@ Choose the protocol. Select **REST** as protocol. Select **New API** to create a
 
 
 ### 2.2 Designing API
+In the left navigation pane under Resources, click Create resource or select an existing resource path, then click Create method. Choose GET, set the Integration type to Lambda Function, select your created Lambda function, and click Create method.
 
-Click on **Actions** and select **Create Method** from the drop-down menu
 ![44](https://user-images.githubusercontent.com/102405945/212111275-6c8900f0-8e69-4b8a-80f2-4b7e350bbc56.png)
 
 Select GET and setup GET. Select **Lambda Function** as Integration type and select Lambda function created earlier. Click **Save**
@@ -152,7 +149,9 @@ click on **TEST**
 
 
 ### 2.4 Deploying API
-Click on **Actions** and select **Enable CORS** from the drop-down menu
+Select your API resource, click Enable CORS from the top header actions, set your origins/headers, and click Save
+Click the Deploy API button at the top right of the resources pane, select your stage (e.g., prod or dev), and click Deploy.
+
 ![50](https://user-images.githubusercontent.com/102405945/212111407-4fc4f663-173c-47a0-b676-e486ffb2a7bf.png)
 
 Click on **Enable CORS and replace existing CORS headers** button
